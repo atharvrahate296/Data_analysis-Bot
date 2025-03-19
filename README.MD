@@ -86,6 +86,7 @@ The bot performs the following key functions:
 *   Add support for more complex feature engineering.
 *   Allow users to customize the analysis process through configuration options.
 *   Perform analysis on various file formats including .xlsv .json and pdf files.
+*   Generate insights on large and complex datasets that aren't possible now due to limitations of context window and authentic data compression techniques.
 *   Better accuracy in handling the various difficulties occuring during the analysis on diverse datasets.
 *   Improve the quality of the generated insights and visualizations.
 *   Implement better error handling and logging.
