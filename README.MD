@@ -68,6 +68,7 @@ The bot performs the following key functions:
 
 ## Directory Structure
 
+```
 ├── Analysis.ipynb       # Jupyter Notebook containing the primary analysis code
 ├── Analysis.ipynb       # Jupyter Notebook containing the primary analysis code 
 ├── Main.py              # streamlit file for loading and processing data 
