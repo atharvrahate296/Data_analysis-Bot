@@ -32,6 +32,7 @@ The bot performs the following key functions:
 2. **Create a Virtual Environment (Recommended):**
     ```bash
     python -m venv env
+    Activate:
     # On Windows:
     .\env\Scripts\activate
     # On macOS and Linux:
@@ -52,10 +53,12 @@ The bot performs the following key functions:
     API_KEY_3="YOUR_API_KEY_3"
     ```
 
-5.  **Run the Notebook:**  Open and run either the `Main.ipynb` file , depending on the intended usage.  
-
+5.  **Run the Main file:** 
+    ```bash
+    streamlit run Main.py
+    ```
 6.  **Input Data:**
-    *   For `Main.ipynb`, datasets like `drake_data.csv`, `drake_data.json`, `drake_data.xlsx`, and `drake_lyrics.txt` should be placed in the `Datasets/Raw/` directory for the notebook to function correctly.
+    *  Select input data in CSV format only (one file).
 
 7.  **Output:** The `Main.py` file will generate an `insights.py` file containing the data analysis report and visualization code.  You can then run this Python file to see the visualizations:
 
@@ -65,22 +68,18 @@ The bot performs the following key functions:
 
 ## Directory Structure
 
-```
-.
 ├── Analysis.ipynb       # Jupyter Notebook containing the primary analysis code
-├── Main.ipynb           # Jupyter Notebook for loading and compressing multiple files
-├── insights.py         # Output file containing the generated insights and code (from Analysis.ipynb)
-├── Datasets
-│   ├── Raw                  # Folder for storing raw input datasets
-│   │   └── customer_shopping_data.csv (example)
-│   │   └── drake_data.csv (example, used by Main.ipynb)
-│   │   └── drake_data.json (example, used by Main.ipynb)
-│   │   └── drake_data.xlsx (example, used by Main.ipynb)
-│   │   └── drake_lyrics.txt (example, used by Main.ipynb)
-│   └── Processed          # Folder for storing processed datasets (currently not actively used)
-│       └── customer_shopping_data.csv
-├── requirements.txt    # List of Python package dependencies
-└── README.md            # This file
+├── Analysis.ipynb       # Jupyter Notebook containing the primary analysis code 
+├── Main.py              # streamlit file for loading and processing data 
+├── insights.py         # Output file containing the generated insights and code (from Analysis.ipynb) 
+├── Datasets 
+│ ├── Raw                  # Folder for storing raw input datasets 
+│    └── customer_shopping_data.csv (example) │ │
+│ └── Processed             # Folder for storing processed datasets (currently not actively used) 
+│    └── customer_shopping_data.csv 
+├── requirements.txt    # List of Python package dependencies 
+├── .gitignore 
+└── README.md           # This file
 ```
 
 ## Environment Variables
