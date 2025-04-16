@@ -6,20 +6,16 @@ This project implements an autonomous data analysis bot that automates the proce
 
 ## Functionality
 
-The bot performs the following key functions:
-
-1.  **Data Loading:**  Accepts datasets in various formats (CSV, XLSX, TXT, JSON).
-2.  **Data Cleaning:**
-    *   Handles missing values using imputation (mean or most frequent).
-    *   Removes duplicate rows.
-    *   Validates data types in numeric columns.
-3.  **Feature Selection:**
-    *   Utilizes a language model (Gemini) to identify the most relevant columns for analysis. This step is crucial for focusing on the most important features.
-4.  **Data Compression:**
-    *   Compresses the data for efficient storage and transfer.  Uses `gzip` compression  in `Main.ipynb`.
-5.  **Insight Generation and Visualization:**
-    *   Uses a language model (Gemini) to generate a data analysis report summarizing key insights.
-    *   Creates Python code for data visualization (using Pandas, Matplotlib, and Seaborn) to illustrate these insights. The code is designed to be saved to a `.py` file and executed.
+1. **Data Loading:** Accepts datasets in various formats (CSV, XLSX, TXT, JSON).
+2. **Data Cleaning:**
+   - Handles missing values using imputation (mean or most frequent).
+   - Removes duplicate rows.
+   - Validates data types in numeric columns.
+3. **Feature Selection:** Utilizes a language model (Gemini) to identify the most relevant columns for analysis.
+4. **Data Compression:** Compresses the data for efficient storage and transfer using `gzip`.
+5. **Insight Generation and Visualization:**
+   - Generates a data analysis report summarizing key insights.
+   - Creates Python code for data visualization using Pandas, Matplotlib, and Seaborn.
 
 ## Usage
 
@@ -55,39 +51,39 @@ The bot performs the following key functions:
 
 5.  **Run the Main file:** 
     ```bash
-    streamlit run Main.py
+    streamlit run app.py
     ```
 6.  **Input Data:**
     *  Select input data in CSV format only (one file).
 
-7.  **Output:** The `Main.py` file will generate an `insights.py` file containing the data analysis report and visualization code.  You can then run this Python file to see the visualizations:
+7.  **Output:** The `app.py` file will generate an `insights.py` file containing the data analysis report and visualization code.  You can then run this Python file to see the visualizations:
 
     ```bash
     python insights.py
     ```
 
-## Directory Structure
+## Project Structure
 
-```
-├── Analysis.ipynb       # Jupyter Notebook containing the primary analysis code
-├── Analysis.ipynb       # Jupyter Notebook containing the primary analysis code 
-├── Main.py              # streamlit file for loading and processing data 
-├── insights.py         # Output file containing the generated insights and code (from Analysis.ipynb) 
-├── Datasets 
-│ ├── Raw                  # Folder for storing raw input datasets 
-│    └── customer_shopping_data.csv (example) │ │
-│ └── Processed             # Folder for storing processed datasets (currently not actively used) 
-│    └── customer_shopping_data.csv 
-├── requirements.txt    # List of Python package dependencies 
-├── .gitignore 
-└── README.md           # This file
-```
+├── .streamlit/
+│   └── config.toml          # Streamlit configuration file for theme customization
+├── Datasets/
+│   ├── Raw/                 # Folder for raw datasets
+│   └── Processed/           # Folder for processed datasets
+├── env/                     # Virtual environment folder
+├── Main.py                  # Streamlit app for data analysis
+├── app.py                 # Additional script for specific analysis
+├── Analysis.ipynb           # Jupyter Notebook for primary analysis
+├── README1.md               # Project documentation
+├── requirements.txt         # Python dependencies
+├── .env                     # Environment variables for API keys
+├── sketch.png               # Project-related image
+
 
 ## Environment Variables
 
-*   `API_KEY_1`: API key for the Gemini language model (used for feature selection in `Main.py`).
-*   `API_KEY_2`: API key for the Gemini language model (used for insight generation in `Main.py`).
-*   `API_KEY_3`: API key for the Gemini language model (used for feature selection in `Main.py`).
+*   `API_KEY_1`: API key for the Gemini language model 
+*   `API_KEY_2`: API key for the Gemini language model 
+*   `API_KEY_3`: API key for the Gemini language model 
 
 ## Future Improvements
 
@@ -100,4 +96,9 @@ The bot performs the following key functions:
 *   Implement better error handling and logging.
 *   Add unit tests.
 *   Explore more efficient data compression algorithms.
+
+
+🚀 **Dive into the world of automated data analysis!**
+**Fork, star, and clone this repository to explore its potential.**
+**Your contributions can help us make data insights smarter, faster, and more accessible. Let's build the future of data analysis together!** 🌟
 ```

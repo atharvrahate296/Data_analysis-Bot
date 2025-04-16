@@ -1,3 +1,5 @@
+# VERSION 1
+
 import streamlit as st
 import pandas as pd
 import os
@@ -37,11 +39,20 @@ def detect_anomalies(df):
 def filter_data(data):
     # Placeholder for the actual filter function
     dtn()
-    api_key = os.getenv("API_KEY_1")
+    api_key = os.getenv("API_KEY_2")
     if not api_key:
         raise ValueError("API key not found! Check your .env file.")
     genai.configure(api_key=api_key)
-    SYS = """You are a Professional Data Analyst Chatbot. The user will provide you with a set of columns in a dataset. Your task is to identify and return ONLY the names of the columns that are most critical and insightful for generating meaningful analysis and actionable insights. Exclude columns that are identifiers (e.g., IDs), dates of birth, or other irrelevant metadata unless they are directly useful for analysis. Focus on columns that represent measurable, categorical, or time-based data that can reveal trends, patterns, or relationships.
+    # SYS = """You are a Professional Data Analyst Chatbot. The user will provide you with a set of columns in a dataset. Your task is to identify and return ONLY the names of the columns that are most critical and insightful for generating meaningful analysis and actionable insights. Exclude columns that are identifiers (e.g., IDs), dates of birth, or other irrelevant metadata unless they are directly useful for analysis. Focus on columns that represent measurable, categorical, or time-based data that can reveal trends, patterns, or relationships.
+
+    # For example:
+    # If the columns are ['customer_id', 'name', 'age', 'city', 'purchase_amount', 'date'], you should return:
+    # ['age', 'city', 'purchase_amount', 'date'] as these are the most relevant for analysis.
+    # """
+    SYS = """You are a Professional Data Analyst Chatbot.
+    The user will provide you with a set of columns in a dataset. Your task is to identify and return ONLY the names of the columns that are most critical and insightful for generating meaningful analysis and actionable insights. 
+    Exclude columns that are identifiers (e.g., IDs), dates of birth, or other irrelevant metadata unless they are directly useful for analysis. 
+    Focus on columns that represent measurable, categorical, or time-based data that can reveal trends, patterns, or relationships. If no columns are suitable for analysis, return an empty list.
 
     For example:
     If the columns are ['customer_id', 'name', 'age', 'city', 'purchase_amount', 'date'], you should return:
@@ -84,7 +95,7 @@ def gather_insights( compressed_data, columns):
     if not api_key:
         raise ValueError("API key not found! Check your .env file.")        
     genai.configure(api_key=api_key)
-    SYST = '''You are a Professional Data Analyst Chatbot. You will be provided with a Pandas DataFrame named 'df' and a list of relevant columns identified in the previous step. Your task is to generate a concise data analysis report (maximum 3 paragraphs) summarizing key insights from the data, followed by Python code for data visualization that supports and illustrates these insights.  Assume the DataFrame 'df' is read directly from the file path specified in the `file_location` variable using pandas.
+    SYST = '''You are a Professional Data Analyst Chatbot. You will be provided with a Pandas DataFrame named 'df' and a list of relevant columns identified in the previous step. Your task is to generate a concise data analysis report (maximum 3 paragraphs) summarizing key insights from the data, followed by Python code for data visualization that supports and illustrates these insights. Assume the DataFrame 'df' is read directly from a CSV file specified in the `file_location` variable using pandas.
 
     The report should:
 
@@ -96,7 +107,7 @@ def gather_insights( compressed_data, columns):
     The Python code should:
 
     *   Use the libraries Pandas, Matplotlib, and Seaborn.
-    *   Read the DataFrame 'df' directly from the path specified in the `file_location` variable using pandas.
+    *   Read the DataFrame 'df' directly from the CSV file specified in the `file_location` variable using pandas.
     *   Generate visualizations that reveal important trends, patterns, and relationships within the data.
     *   Include descriptive statistics, distributions, count plots, scatter plots, box plots, correlation heatmaps, and time series analysis (if a date column is available).
     *   Include appropriate titles, labels, and legends for clarity.
@@ -154,7 +165,7 @@ def gather_insights( compressed_data, columns):
     plt.show()
 
     # 3. Purchase Amount over Time
-    df['date'] = pd.to_datetime(df['date')
+    df['date'] = pd.to_datetime(df['date'])
     df['month'] = df['date'].dt.month
     monthly_purchases = df.groupby('month')['purchase_amount'].sum()
     plt.figure(figsize=(12, 7))
@@ -208,7 +219,7 @@ def main():
         
         # Option to download processed data
         csv = combined_df.to_csv(index=False).encode('utf-8')
-        st.download_button("Download Processed Data", csv, "processed_data.csv", "text/csv")
+        st.download_button("Download Processed Data", csv, file.name, "text/csv")
         
         # Do Analysis button
         if st.button("Do Analysis"):

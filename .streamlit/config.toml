@@ -1,0 +1,6 @@
+[theme]       # Options: "light" or "dark"
+primaryColor="#5d5dd9"
+backgroundColor="#38393b"
+secondaryBackgroundColor="#1e1e1f"
+textColor="#FFFFFF"
+font="Montserrat"    # Options "sans serif", "serif", or "monospace"
