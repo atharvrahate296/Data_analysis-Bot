@@ -106,20 +106,26 @@ def gather_insights(compressed_data, columns, compression_method='bz2'):
         The report should:
 
         *   Be written in a professional and clear tone.
-        *   Focus on the most important trends, patterns, and relationships within the data.
-        *   Include specific observations and quantifiable metrics (e.g., averages, distributions, correlations) to support your claims.
-        *   Present insights in bullet points for easy readability.
+        *   Provide an overview of the dataset, including the number of rows, columns, and data types.
+        *   Highlight the most important trends, patterns, and relationships within the data.
+        *   Include specific observations and quantifiable metrics (e.g., averages, distributions, correlations, outliers) to support your claims.
+        *   Discuss any anomalies, missing values, or duplicates found in the data and how they were handled.
+        *   Provide insights into the distributions of key variables, relationships between variables, and any time-based trends (if applicable).
+        *   Present insights in bullet points for easy readability, followed by a detailed explanation for each point.
 
         The Python code should:
 
         *   Use the libraries Pandas, Matplotlib, and Seaborn.
-        *   Decompress the provided data to create the DataFrame 'df'.
+        *   read data directly from location using pandas.read_csv() function 
         *   Generate visualizations that reveal important trends, patterns, and relationships within the data.
         *   Include descriptive statistics, distributions, count plots, scatter plots, box plots, correlation heatmaps, and time series analysis (if a date column is available).
+        *   group the values into categories or bins to ensure that the labels are clear and readable in the plot.
         *   Include appropriate titles, labels, and legends for clarity.
         *   Be well-commented to explain the purpose of each step.
         *   Be executable without errors, assuming the file is accessible at the path given by `file_location` and the relevant columns are present.
         *   Focus on conciseness and clarity, providing a comprehensive overview of the data's key characteristics.
+        *   Add a commented line at the end of the code that demonstrates how to save each plot as an image file (e.g., `plt.savefig('plot_name.png')`).
+        *   All the text other than python code should be commented!
         '''
 
         model = genai.GenerativeModel(
@@ -134,11 +140,15 @@ def gather_insights(compressed_data, columns, compression_method='bz2'):
     except Exception as e:
         st.error(f"Error gathering insights: {e}")
         return None
-
-def write_insights(filename,content):
+# filepath: [app.py](http://_vscodecontentref_/0)
+def write_insights(filename, content):
     try:
+        # Remove markdown code block delimiters using regex
+        import re
+        cleaned_content = re.sub(r"```(?:python)?\n?|```", "", content)
+
         with open(filename, "w") as file:
-            file.write(content)
+            file.write(cleaned_content)
         st.write("Insights and code saved to insights.py. Save or rename the file before running the analysis task again!")
     except Exception as e:
         st.error(f"Error writing insights to file: {e}")
