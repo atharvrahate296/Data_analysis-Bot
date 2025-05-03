@@ -140,7 +140,7 @@ def gather_insights(compressed_data, columns, compression_method='bz2'):
     except Exception as e:
         st.error(f"Error gathering insights: {e}")
         return None
-# filepath: [app.py](http://_vscodecontentref_/0)
+
 def write_insights(filename, content):
     try:
         # Remove markdown code block delimiters using regex
